@@ -1,0 +1,12 @@
+La web usa los ocho tracks de tracks.json. Los WAV se sirven desde los assets de la
+GitHub Release "audio-v1" del repositorio opsynatra08-art/Ovnivirus-site; así no se
+incluyen los archivos de audio de más de 100 MB en el código de la página.
+
+Cada WAV de Release debe adjuntarse con el nombre exacto indicado en tracks.json.
+Cada asset de Release debe pesar menos de 2 GiB.
+
+El Free Pack abre el enlace compartido de TeraBox. El ZIP original no se debe copiar
+al repositorio: pesa aproximadamente 122 MB.
+
+Para actualizar la música, adjunta los nuevos assets a una Release, actualiza tracks.json
+y publica los cambios de la página.
