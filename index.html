@@ -4,8 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#0e100f">
-    <meta name="description" content="Ovnivirus: music, samples, and sounds from outside the orbit.">
-    <title>Ovnivirus — Sound Out of Orbit</title>
+    <meta name="description" content="Explore Ovnivirus music and shop the complete psychedelic sound collection: 200+ sounds, synth presets, Ableton racks, and samples.">
+    <meta property="og:title" content="Ovnivirus — Complete Psychedelic Sound Collection">
+    <meta property="og:description" content="Shop 200+ psychedelic sounds: Serum and Vital presets, Ableton racks, WAV samples, drums, bass, and leads.">
+    <meta property="og:image" content="https://opsynatra08-art.github.io/Ovnivirus-site/assets/design/product-cover.png">
+    <meta property="og:url" content="https://opsynatra08-art.github.io/Ovnivirus-site/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="download-api" content="">
+    <title>Ovnivirus | Complete Psychedelic Sound Collection</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -20,8 +26,9 @@
       </a>
       <nav aria-label="Main navigation">
         <a href="#musica">Audio</a>
+        <a href="#full-product">Shop</a>
         <a href="#free-pack">Free Pack</a>
-        <a class="nav-soundcloud" href="https://soundcloud.com/ovnivirus-live" target="_blank" rel="noopener noreferrer">SoundCloud <span aria-hidden="true">↗</span></a>
+        <a class="nav-soundcloud" href="https://ovnivirus7.gumroad.com/l/sfakj" target="_blank" rel="noopener noreferrer">Buy the full pack <span aria-hidden="true">↗</span></a>
       </nav>
     </header>
 
@@ -31,13 +38,40 @@
           <p class="eyebrow"><span class="status-dot"></span> Producer · DJ · Mexico</p>
           <h1 id="hero-title">SOUND<br>OUT OF<br><span>ORBIT.</span></h1>
           <p class="hero-description">Psychedelia, deep bass, and sounds from another planet. Tune in to Ovnivirus.</p>
-          <a class="button button-primary" href="#musica">Explore music <span aria-hidden="true">↓</span></a>
+          <a class="button button-primary" href="#full-product">Shop the complete collection <span aria-hidden="true">↗</span></a>
         </div>
         <div class="hero-art" aria-label="Ovnivirus artwork">
           <img src="assets/images/ovnivirus-wordmark.png" alt="Ovnivirus logo with rusted metal and purple slime textures">
           <span class="art-caption">PSYCHEDELIC SOUNDS<br>TRANSMISSION OVN-01</span>
         </div>
         <div class="hero-index" aria-hidden="true">01 / 03</div>
+      </section>
+
+      <section class="product-section section-wrap" id="full-product" aria-labelledby="product-title">
+        <div class="product-copy">
+          <p class="eyebrow"><span class="status-dot"></span> Complete collection · 200+ sounds</p>
+          <h2 id="product-title">THE FULL<br>PSYCHEDELIC<br><span>TOOLKIT.</span></h2>
+          <p class="product-description">Go beyond the free pack. Get the complete Ovnivirus sound collection, built for producers who want bold new textures in every session.</p>
+          <ul class="product-includes">
+            <li>Serum and Vital presets</li>
+            <li>Ableton Live racks and instrument racks</li>
+            <li>WAV samples, drums, kicks, bass, leads, and more</li>
+            <li>200+ sounds in one complete collection</li>
+          </ul>
+          <p class="product-price"><strong>€40 EUR</strong><span>Checkout may show your local currency.</span></p>
+          <a class="button button-primary product-buy-button" href="https://ovnivirus7.gumroad.com/l/sfakj" target="_blank" rel="noopener noreferrer">
+            BUY THE COMPLETE COLLECTION <span aria-hidden="true">↗</span>
+          </a>
+          <p class="product-checkout-note">Secure checkout and product delivery on Gumroad.</p>
+        </div>
+        <div class="product-gallery" aria-label="Ovnivirus complete sound collection artwork">
+          <img class="product-cover" src="assets/design/product-cover.png" alt="Ovnivirus complete psychedelic products collection cover, including Serum, Vital, Kick 2, samples, drums, and bass" width="1280" height="720">
+          <div class="product-gallery-secondary">
+            <img src="assets/design/product-serum.png" alt="Ovnivirus sound collection displayed in a colorful psychedelic studio" width="1024" height="1024" loading="lazy">
+            <img src="assets/design/product-ableton.png" alt="Ovnivirus product artwork in a psychedelic record shop" width="1024" height="1024" loading="lazy">
+            <img src="assets/design/product-sounds.png" alt="Ovnivirus psychedelic sound collection artwork" width="1024" height="1024" loading="lazy">
+          </div>
+        </div>
       </section>
 
       <section class="music-section section-wrap" id="musica" aria-labelledby="music-title">
@@ -101,13 +135,13 @@
           <p class="free-pack-description">Download the Ovnivirus Sample Free Pack and bring fresh sounds to your studio.</p>
           <p class="follow-note">Follow my accounts and confirm each step to unlock the download.</p>
         </div>
-        <div class="download-card">
+        <form class="download-card" id="download-form">
           <div class="pack-file">
             <img src="assets/images/ovnivirus-avatar.png" alt="" width="54" height="54">
             <div>
               <span class="pack-label">FREE SAMPLE PACK</span>
               <strong>Sample Free Pack</strong>
-              <span class="pack-format">TeraBox · free download</span>
+              <span class="pack-format">ZIP · free download</span>
             </div>
           </div>
           <div class="follow-list" aria-label="Follow Ovnivirus and confirm each account">
@@ -124,18 +158,29 @@
               <label><input class="follow-confirmation" type="checkbox"> I followed</label>
             </div>
           </div>
-          <a
-            class="button button-primary download-link is-locked"
-            id="download-link"
-            href="https://1024terabox.com/s/1ub5GbaysUwdgJkYheFh6ig"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-disabled="true"
-            tabindex="-1"
-          >Unlock Free Pack <span aria-hidden="true">↓</span></a>
-          <p class="download-status" id="download-status" aria-live="polite">Confirm that you follow all three accounts to unlock the pack download.</p>
-          <p class="verification-note">This page cannot automatically verify follows. Confirmations are manual.</p>
-        </div>
+          <div class="download-fields">
+            <label for="download-name">Name</label>
+            <input id="download-name" name="name" type="text" autocomplete="name" maxlength="100" required>
+            <label for="download-email">Email address</label>
+            <input id="download-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+          </div>
+          <label class="consent-label">
+            <input id="download-consent" name="consent" type="checkbox" required>
+            <span>I agree that my name and email will be sent via Resend to Ovnivirus at
+              <a href="mailto:ovnivirus107@gmail.com">ovnivirus107@gmail.com</a> solely to report my completed
+              download. My details are not used for marketing.</span>
+          </label>
+          <button class="button button-primary download-link is-locked" id="download-link" type="submit" disabled>
+            Unlock Free Pack <span aria-hidden="true">↓</span>
+          </button>
+          <p class="download-status" id="download-status" aria-live="polite">
+            Confirm all three follows, enter your name and email, and accept the data notice.
+          </p>
+          <p class="verification-note">Follows are self-confirmed and cannot be automatically verified. If you do not
+            finish the transfer, your details are deleted when the link expires. After a completed transfer, details
+            are kept only until the report email is sent (up to 30 days if delivery fails). The report cannot verify
+            that your browser saved or extracted the ZIP.</p>
+        </form>
       </section>
     </main>
 

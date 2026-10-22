@@ -14,8 +14,12 @@ const progress = document.querySelector("#progress");
 const currentTime = document.querySelector("#current-time");
 const duration = document.querySelector("#duration");
 const followConfirmations = [...document.querySelectorAll(".follow-confirmation")];
+const downloadForm = document.querySelector("#download-form");
 const downloadLink = document.querySelector("#download-link");
 const downloadStatus = document.querySelector("#download-status");
+const downloadName = document.querySelector("#download-name");
+const downloadEmail = document.querySelector("#download-email");
+const downloadConsent = document.querySelector("#download-consent");
 
 let tracks = [];
 let currentTrackIndex = -1;
@@ -133,17 +137,60 @@ function configurePlayer() {
   emptyState.hidden = tracks.length > 0;
 }
 
+function getDownloadApi() {
+  return document.querySelector('meta[name="download-api"]').content.trim();
+}
+
 function updateDownloadAccess() {
-  const allConfirmed = followConfirmations.every((checkbox) => checkbox.checked);
-  downloadLink.classList.toggle("is-locked", !allConfirmed);
-  downloadLink.setAttribute("aria-disabled", String(!allConfirmed));
-  downloadLink.tabIndex = allConfirmed ? 0 : -1;
-  downloadLink.innerHTML = allConfirmed
-    ? "Open Free Pack <span aria-hidden=\"true\">↗</span>"
-    : "Unlock Free Pack <span aria-hidden=\"true\">↓</span>";
-  downloadStatus.textContent = allConfirmed
-    ? "You're all set! Open the TeraBox link to download the pack."
-    : "Confirm that you follow all three accounts to unlock the pack download.";
+  const downloadApi = getDownloadApi();
+  const ready = followConfirmations.every((checkbox) => checkbox.checked)
+    && downloadForm.checkValidity()
+    && Boolean(downloadApi);
+  downloadLink.disabled = !ready;
+  downloadLink.classList.toggle("is-locked", !ready);
+  if (!downloadLink.dataset.submitting) {
+    downloadStatus.textContent = !downloadApi
+      ? "The download service is not configured yet. Please check back soon."
+      : ready
+        ? "You're all set. Submit to prepare your download."
+        : "Confirm all three follows, enter your name and email, and accept the data notice.";
+  }
+}
+
+async function requestDownload(event) {
+  event.preventDefault();
+  updateDownloadAccess();
+  if (downloadLink.disabled) return;
+
+  downloadLink.dataset.submitting = "true";
+  downloadLink.disabled = true;
+  downloadLink.classList.add("is-locked");
+  downloadStatus.textContent = "Preparing your download…";
+
+  try {
+    const response = await fetch(new URL("/api/download", getDownloadApi()), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: downloadName.value.trim(),
+        email: downloadEmail.value.trim(),
+        consent: downloadConsent.checked,
+        follows: followConfirmations.map((checkbox) => checkbox.checked),
+      }),
+    });
+    const result = await response.json();
+    if (!response.ok) {
+      throw new Error(result.error || `The download request failed (${response.status}).`);
+    }
+    if (typeof result.downloadUrl !== "string") {
+      throw new Error("The download service returned an invalid response.");
+    }
+    window.location.assign(result.downloadUrl);
+  } catch (error) {
+    delete downloadLink.dataset.submitting;
+    updateDownloadAccess();
+    downloadStatus.textContent = error.message;
+  }
 }
 
 async function loadTracks() {
@@ -241,9 +288,9 @@ for (const checkbox of followConfirmations) {
   checkbox.addEventListener("change", updateDownloadAccess);
 }
 
-downloadLink.addEventListener("click", (event) => {
-  if (downloadLink.getAttribute("aria-disabled") === "true") event.preventDefault();
-});
+downloadForm.addEventListener("input", updateDownloadAccess);
+downloadForm.addEventListener("change", updateDownloadAccess);
+downloadForm.addEventListener("submit", requestDownload);
 
 configurePlayer();
 renderTracks();
