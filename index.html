@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0e100f">
+    <meta name="description" content="Ovnivirus: música, samples y sonidos fuera de órbita.">
+    <title>Ovnivirus — Sonido fuera de órbita</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="#inicio" aria-label="Ovnivirus, inicio">
+        <img src="assets/images/ovnivirus-avatar.png" alt="" width="34" height="34">
+        <span>OVNIVIRUS</span>
+      </a>
+      <nav aria-label="Navegación principal">
+        <a href="#musica">Audio</a>
+        <a href="#free-pack">Free Pack</a>
+        <a class="nav-soundcloud" href="https://soundcloud.com/ovnivirus-live" target="_blank" rel="noopener noreferrer">SoundCloud <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="status-dot"></span> Productor · DJ · México</p>
+          <h1 id="hero-title">SONIDO<br>FUERA DE<br><span>ÓRBITA.</span></h1>
+          <p class="hero-description">Psicodelia, bajos profundos y sonidos de otro planeta. Entra a la señal de Ovnivirus.</p>
+          <a class="button button-primary" href="#musica">Explorar música <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="hero-art" aria-label="Arte abstracto de Ovnivirus">
+          <img src="assets/images/ovnivirus-wordmark.png" alt="Logo de Ovnivirus con textura metálica oxidada y slime violeta">
+          <span class="art-caption">PSYCHEDELIC SOUNDS<br>TRANSMISIÓN OVN-01</span>
+        </div>
+        <div class="hero-index" aria-hidden="true">01 / 03</div>
+      </section>
+
+      <section class="music-section section-wrap" id="musica" aria-labelledby="music-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Nueva señal · audio local</p>
+            <h2 id="music-title">Tus nuevos sonidos<span class="accent">.</span></h2>
+          </div>
+          <a class="text-link" href="https://soundcloud.com/ovnivirus-live" target="_blank" rel="noopener noreferrer">Más en SoundCloud <span aria-hidden="true">↗</span></a>
+        </div>
+
+        <div class="music-layout">
+          <div class="track-column">
+            <div class="filters" aria-label="Filtros de música">
+              <label class="search-field">
+                <span class="visually-hidden">Buscar en los tracks</span>
+                <span class="search-icon" aria-hidden="true">⌕</span>
+                <input id="track-search" type="search" placeholder="Buscar track o artista" autocomplete="off">
+              </label>
+              <label class="filter-select">
+                <span class="visually-hidden">Filtrar por BPM</span>
+                <select id="bpm-filter">
+                  <option value="all">Todos los BPM</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="track-list" id="track-list" aria-label="Lista de tracks"></div>
+            <div class="empty-state" id="empty-state">
+              <p id="empty-title">Cargando música…</p>
+              <span id="empty-hint">Buscando los tracks de Ovnivirus.</span>
+            </div>
+          </div>
+
+          <aside class="now-playing" aria-label="Reproductor">
+            <div class="player-art">
+              <img src="assets/images/ovnivirus-cover.png" alt="Logo psicodélico de Ovnivirus rodeado de slime verde">
+            </div>
+            <p class="eyebrow">Reproduciendo ahora</p>
+            <h3 id="player-title">La pista empieza aquí</h3>
+            <p class="player-artist" id="player-artist">OVNIVIRUS SELECTS</p>
+            <audio id="audio-player" preload="none"></audio>
+            <div class="player-controls">
+              <button class="icon-button" id="previous-track" type="button" aria-label="Track anterior" disabled>|◀</button>
+              <button class="play-button" id="play-toggle" type="button" aria-label="Reproducir" disabled>▶</button>
+              <button class="icon-button" id="next-track" type="button" aria-label="Siguiente track" disabled>▶|</button>
+            </div>
+            <div class="progress-wrap">
+              <input id="progress" type="range" min="0" max="100" value="0" aria-label="Posición del track" disabled>
+              <div class="time-row"><span id="current-time">0:00</span><span id="duration">0:00</span></div>
+            </div>
+            <p class="player-note">Audio WAV · alojado en GitHub Releases</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="free-pack-section" id="free-pack" aria-labelledby="free-pack-title">
+        <div class="free-pack-copy">
+          <p class="eyebrow"><span class="status-dot"></span> Descarga gratuita · sample pack</p>
+          <h2 id="free-pack-title">SONIDOS<br>PARA TU<br><span>PRÓXIMO VIAJE.</span></h2>
+          <p class="free-pack-description">Descarga el Sample Free Pack de Ovnivirus y llévate nuevos sonidos a tu estudio.</p>
+          <p class="follow-note">Sigue mis cuentas y confirma cada paso para desbloquear la descarga.</p>
+        </div>
+        <div class="download-card">
+          <div class="pack-file">
+            <img src="assets/images/ovnivirus-avatar.png" alt="" width="54" height="54">
+            <div>
+              <span class="pack-label">FREE SAMPLE PACK</span>
+              <strong>Sample Free Pack</strong>
+              <span class="pack-format">TeraBox · descarga gratuita</span>
+            </div>
+          </div>
+          <div class="follow-list" aria-label="Sigue a Ovnivirus y confirma cada cuenta">
+            <div class="follow-step">
+              <a href="https://soundcloud.com/ovnivirus-live" target="_blank" rel="noopener noreferrer">Seguir en SoundCloud <span aria-hidden="true">↗</span></a>
+              <label><input class="follow-confirmation" type="checkbox"> Ya lo seguí</label>
+            </div>
+            <div class="follow-step">
+              <a href="https://www.facebook.com/Ovnivirus777" target="_blank" rel="noopener noreferrer">Seguir en Facebook <span aria-hidden="true">↗</span></a>
+              <label><input class="follow-confirmation" type="checkbox"> Ya lo seguí</label>
+            </div>
+            <div class="follow-step">
+              <a href="https://www.instagram.com/ovnivirus/" target="_blank" rel="noopener noreferrer">Seguir en Instagram <span aria-hidden="true">↗</span></a>
+              <label><input class="follow-confirmation" type="checkbox"> Ya lo seguí</label>
+            </div>
+          </div>
+          <a
+            class="button button-primary download-link is-locked"
+            id="download-link"
+            href="https://1024terabox.com/s/1ub5GbaysUwdgJkYheFh6ig"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-disabled="true"
+            tabindex="-1"
+          >Desbloquea para descargar <span aria-hidden="true">↓</span></a>
+          <p class="download-status" id="download-status" aria-live="polite">Confirma que sigues las tres cuentas para abrir la descarga del pack.</p>
+          <p class="verification-note">La página no puede comprobar automáticamente los follows; la confirmación es manual.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="wordmark footer-wordmark" href="#inicio">OVNIVIRUS</a>
+      <span>Hecho para escucharse alto.</span>
+      <a href="https://www.instagram.com/ovnivirus/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+    </footer>
+  </body>
+</html>
