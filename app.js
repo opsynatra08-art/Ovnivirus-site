@@ -28,12 +28,12 @@ function formatTime(seconds) {
 }
 
 function renderTracks() {
-  const query = searchInput.value.trim().toLocaleLowerCase("es");
+  const query = searchInput.value.trim().toLocaleLowerCase("en");
   const selectedBpm = bpmFilter.value;
   const visibleTracks = tracks
     .map((track, index) => ({ ...track, index }))
     .filter((track) => {
-      const matchesSearch = `${track.title} ${track.artist}`.toLocaleLowerCase("es").includes(query);
+      const matchesSearch = `${track.title} ${track.artist}`.toLocaleLowerCase("en").includes(query);
       const matchesBpm = selectedBpm === "all" || track.bpm === Number(selectedBpm);
       return matchesSearch && matchesBpm;
     });
@@ -41,8 +41,8 @@ function renderTracks() {
   trackList.replaceChildren();
   emptyState.hidden = visibleTracks.length > 0;
   if (tracks.length && !visibleTracks.length) {
-    emptyTitle.textContent = "No hay tracks con esos filtros.";
-    emptyHint.textContent = "Prueba con otra búsqueda o selecciona otro BPM.";
+    emptyTitle.textContent = "No tracks match those filters.";
+    emptyHint.textContent = "Try another search or select a different BPM.";
   }
 
   for (const track of visibleTracks) {
@@ -69,10 +69,10 @@ function renderTracks() {
     const button = document.createElement("button");
     button.className = "track-play";
     button.type = "button";
-    button.setAttribute("aria-label", `Reproducir ${track.title} de ${track.artist}`);
+    button.setAttribute("aria-label", `Play ${track.title} by ${track.artist}`);
     button.textContent = track.index === currentTrackIndex && !audio.paused ? "Ⅱ" : "▶";
     button.disabled = !track.url;
-    if (!track.url) button.title = "La descarga del audio se habilitará al publicar el repositorio.";
+    if (!track.url) button.title = "Audio playback will be available once the release is published.";
     if (track.index === currentTrackIndex) button.classList.add("is-current");
     button.addEventListener("click", () => {
       if (track.index === currentTrackIndex && !audio.paused) {
@@ -93,7 +93,7 @@ function loadTrack(index, shouldPlay) {
   const track = tracks[index];
   if (!track) return;
   if (!track.url) {
-    playerArtist.textContent = "Publica los archivos en la Release de GitHub para activar el audio.";
+    playerArtist.textContent = "Publish the files in the GitHub release to enable audio.";
     return;
   }
 
@@ -114,7 +114,7 @@ function loadTrack(index, shouldPlay) {
 function playAudio() {
   audio.play().catch((error) => {
     if (error.name === "AbortError") return;
-    playerArtist.textContent = "No se pudo iniciar el audio seleccionado.";
+    playerArtist.textContent = "Could not start the selected audio.";
   });
 }
 
@@ -139,16 +139,16 @@ function updateDownloadAccess() {
   downloadLink.setAttribute("aria-disabled", String(!allConfirmed));
   downloadLink.tabIndex = allConfirmed ? 0 : -1;
   downloadLink.innerHTML = allConfirmed
-    ? "Abrir Free Pack <span aria-hidden=\"true\">↗</span>"
-    : "Desbloquea el Free Pack <span aria-hidden=\"true\">↓</span>";
+    ? "Open Free Pack <span aria-hidden=\"true\">↗</span>"
+    : "Unlock Free Pack <span aria-hidden=\"true\">↓</span>";
   downloadStatus.textContent = allConfirmed
-    ? "¡Listo! Abre el enlace de TeraBox para descargar el pack."
-    : "Confirma que sigues las tres cuentas para abrir la descarga del pack.";
+    ? "You're all set! Open the TeraBox link to download the pack."
+    : "Confirm that you follow all three accounts to unlock the pack download.";
 }
 
 async function loadTracks() {
   const response = await fetch("assets/audio/tracks.json");
-  if (!response.ok) throw new Error(`No se pudo cargar la lista de pistas (${response.status}).`);
+  if (!response.ok) throw new Error(`Could not load the track list (${response.status}).`);
 
   const manifest = await response.json();
   const repoParts = manifest.repository.split("/");
@@ -172,15 +172,15 @@ async function loadTracks() {
   }
 
   if (!repositoryConfigured) {
-    playerArtist.textContent = "Termina de configurar el repositorio y la Release de GitHub.";
+    playerArtist.textContent = "Finish setting up the GitHub repository and release to enable audio.";
     configurePlayer();
     renderTracks();
     return;
   }
 
   if (!tracks.length) {
-    emptyTitle.textContent = "Aún no hay música publicada.";
-    emptyHint.textContent = "Los tracks aparecerán aquí cuando se añadan a la Release de GitHub.";
+    emptyTitle.textContent = "No music has been published yet.";
+    emptyHint.textContent = "Tracks will appear here after they are added to the GitHub release.";
   }
 
   configurePlayer();
@@ -208,12 +208,12 @@ audio.addEventListener("play", () => {
     playerArtist.textContent = track.artist.toUpperCase();
   }
   playToggle.textContent = "Ⅱ";
-  playToggle.setAttribute("aria-label", "Pausar");
+  playToggle.setAttribute("aria-label", "Pause");
   renderTracks();
 });
 audio.addEventListener("pause", () => {
   playToggle.textContent = "▶";
-  playToggle.setAttribute("aria-label", "Reproducir");
+  playToggle.setAttribute("aria-label", "Play");
   renderTracks();
 });
 audio.addEventListener("loadedmetadata", () => {
@@ -228,8 +228,8 @@ audio.addEventListener("timeupdate", () => {
 });
 audio.addEventListener("ended", () => playAdjacentTrack(1));
 audio.addEventListener("error", () => {
-  playerTitle.textContent = "No se pudo reproducir el audio";
-  playerArtist.textContent = "Comprueba que el archivo esté publicado en la Release de GitHub.";
+  playerTitle.textContent = "Could not play this track";
+  playerArtist.textContent = "Check that the audio file is published in the GitHub release.";
 });
 progress.addEventListener("input", () => {
   if (Number.isFinite(audio.duration)) {
@@ -249,7 +249,7 @@ configurePlayer();
 renderTracks();
 updateDownloadAccess();
 loadTracks().catch((error) => {
-  emptyTitle.textContent = "No se pudo cargar la música.";
+  emptyTitle.textContent = "Could not load the music.";
   emptyHint.textContent = error.message;
   emptyState.hidden = false;
 });
