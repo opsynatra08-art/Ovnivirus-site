@@ -10,7 +10,7 @@ The homepage prominently features the complete Ovnivirus psychedelic sound colle
 and links to its Gumroad checkout: `https://ovnivirus7.gumroad.com/l/sfakj`. The product
 page lists 200+ sounds, Serum and Vital presets, Ableton racks, WAV samples, drums,
 kicks, bass, and leads. The current listed price is €40; Gumroad may display a localized
-price at checkout. Product gallery images are stored in `assets/design/`.
+price at checkout. Product gallery images are loaded from the public Gumroad product page.
 
 ## Publish with GitHub Pages
 
